@@ -15,7 +15,8 @@ const fetchLocation = async (city,state) => {
 
         const data = await response.json();
         if (!data.length) {
-            throw new Error("Location not found!");
+            hideLoading()
+            throw new Error("Location not found, be sure to check spelling and if a valid city!");
         }
 
         // Get latitude and longitude
