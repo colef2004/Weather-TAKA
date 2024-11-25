@@ -3,8 +3,8 @@ const weatherAPI = "https://api.openweathermap.org/data/3.0/onecall?";
 const APIKey = "f1bde32eb648f1a1b7eb39a666111ae0";
 
 // Fetch location based on city and state
-const fetchLocation = async (city,state) => {
-    const url = `${geocodingAPI}?q=${city},${state}&appid=${APIKey}`;
+const fetchLocation = async (city) => {
+    const url = `${geocodingAPI}?q=${city}&appid=${APIKey}`;
     showLoading();
     try {
         const response = await fetch(url);
@@ -21,6 +21,7 @@ const fetchLocation = async (city,state) => {
 
         // Get latitude and longitude
         const { lat, lon } = data[0];
+        const {state} = data[0]
         console.log(`Latitude: ${lat}, Longitude: ${lon}`);
         fetchWeather(lat, lon);
         hideLoading();

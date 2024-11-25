@@ -35,8 +35,7 @@ const getCurrentLocationWeather = async () => {
 const displayWeatherData = (data) => {
     const {
         dt, sunrise, sunset, temp, feels_like, pressure,
-        humidity, dew_point, uvi, clouds, visibility,
-        wind_speed, wind_deg, weather,
+        humidity, wind_speed, wind_deg, weather
     } = data.current;
 
     const formatTime = (timestamp) =>
@@ -46,7 +45,7 @@ const displayWeatherData = (data) => {
     const sunriseTime = formatTime(sunrise);
     const sunsetTime = formatTime(sunset);
 
-    const weatherIcon = `http://openweathermap.org/img/wn/${weather[0].icon}@4x.png`;
+    const weatherIcon = `https://openweathermap.org/img/wn/${weather[0].icon}@4x.png`;
 
     weatherContainer.innerHTML = `
         <div class="card shadow-sm p-3 mb-4">
@@ -54,6 +53,7 @@ const displayWeatherData = (data) => {
                 <img src="${weatherIcon}" alt="${weather[0].description}" class="mb-3">
                 <h2 class="card-title text-primary">Current Weather</h2>
                 <p><strong>${weather[0].description}</strong></p>
+                <p><strong>State:</strong> ${state} </p>
                 <p><strong>Temperature:</strong> ${Math.round(temp)} °F</p>
                 <p><strong>Feels Like:</strong> ${Math.round(feels_like)} °F</p>
                 <p><strong>Pressure:</strong> ${pressure} hPa</p>
@@ -73,6 +73,6 @@ const displayWeatherData = (data) => {
 form.addEventListener("submit", (event) => {
     event.preventDefault(); // Prevent page refresh
     const city = document.getElementById("city").value;
-    const state = document.getElementById("state").value;
-    fetchLocation(city,state);
+    //const state = document.getElementById("state").value;
+    fetchLocation(city);
 });
