@@ -35,7 +35,7 @@ const getCurrentLocationWeather = async () => {
 const displayWeatherData = (data) => {
     const {
         dt, sunrise, sunset, temp, feels_like, pressure,
-        humidity, wind_speed, wind_deg, weather
+        humidity, wind_speed, wind_deg, weather,state
     } = data.current;
 
     const formatTime = (timestamp) =>
@@ -53,7 +53,6 @@ const displayWeatherData = (data) => {
                 <img src="${weatherIcon}" alt="${weather[0].description}" class="mb-3">
                 <h2 class="card-title text-primary">Current Weather</h2>
                 <p><strong>${weather[0].description}</strong></p>
-                <p><strong>State:</strong> ${state} </p>
                 <p><strong>Temperature:</strong> ${Math.round(temp)} °F</p>
                 <p><strong>Feels Like:</strong> ${Math.round(feels_like)} °F</p>
                 <p><strong>Pressure:</strong> ${pressure} hPa</p>
